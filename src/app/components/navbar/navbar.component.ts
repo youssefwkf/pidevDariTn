@@ -3,6 +3,7 @@ import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {ServiceSurveillance} from '../../service/surveillance/service-surveillance';
 
 @Component({
   selector: "app-navbar",
@@ -15,16 +16,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebarVisible: boolean;
-
+  nbe:number = this.ss.getnbelignecommande();
   public isCollapsed = true;
 
   closeResult: string;
 
   constructor(
+    private ss: ServiceSurveillance,
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
   ) {
     this.location = location;
     this.sidebarVisible = false;

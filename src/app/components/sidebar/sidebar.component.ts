@@ -28,12 +28,6 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
   {
-    path: "/surveillance",
-    title: "Camera surveillance",
-    rtlTitle: "خرائط",
-    icon: "icon-camera-18",
-    class: "" },
-  {
     path: "/credit",
     title: "Credit simulation",
     rtlTitle: "خرائط",
@@ -56,6 +50,37 @@ export const ROUTES: RouteInfo[] = [
   }
 ];
 
+export const MYROUTES: RouteInfo[] =[
+  {
+    path: "/product",
+    title: "product",
+    rtlTitle: "ملف تعريفي للمستخدم",
+    icon: "icon-notes",
+    class: ""
+  },
+  {
+    path: "/activities",
+    title: "activities",
+    rtlTitle: "ملف تعريفي للمستخدم",
+    icon: "icon-notes",
+    class: ""
+  },
+  {
+    path: "/gestionsurveillance",
+    title: "gestionsurveillance",
+    rtlTitle: "ملف تعريفي للمستخدم",
+    icon: "icon-notes",
+    class: ""
+  },
+  {
+    path: "/chat",
+    title: "chat",
+    rtlTitle: "ملف تعريفي للمستخدم",
+    icon: "icon-notes",
+    class: ""
+  }
+];
+
 @Component({
   selector: "app-sidebar",
   templateUrl: "./sidebar.component.html",
@@ -63,11 +88,13 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  mymenuItems: any[];
 
   constructor() {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.mymenuItems = MYROUTES.filter(mymenuItem => mymenuItem);
   }
   isMobileMenu() {
     if (window.innerWidth > 991) {

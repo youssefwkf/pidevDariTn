@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
+declare var test;
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -28,5 +29,10 @@ export class TestComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+
+  }
+
+  mytest(){
+    test();
   }
 }

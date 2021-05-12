@@ -13,6 +13,13 @@ import {CreditSimulationComponent} from '../../credit-simulation/credit-simulati
 import {CameraSurveillanceComponent} from '../../camera-surveillance/camera-surveillance.component';
 import {ContratComponent} from '../../contrat/contrat.component';
 import {InssuranceComponent} from '../../inssurance/inssurance.component';
+import {ProfileComponent} from '../../profile/profile.component';
+import {SettingComponent} from '../../setting/setting.component';
+import {ProductComponent} from '../../camera-surveillance/product/product.component';
+import {RequestDevisComponent} from '../../camera-surveillance/request-devis/request-devis.component';
+import {MyActivitiesComponent} from '../../camera-surveillance/my-activities/my-activities.component';
+import {GestionSurveillanceComponent} from '../../camera-surveillance/gestion-surveillance/gestion-surveillance.component';
+import {ChatComponent} from '../../camera-surveillance/chat/chat.component';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -22,5 +29,17 @@ export const AdminLayoutRoutes: Routes = [
   { path: "surveillance", component: CameraSurveillanceComponent },
   { path: "contrat", component: ContratComponent },
   { path: "insurance", component: InssuranceComponent },
+  { path: "profile", component: ProfileComponent },
+  { path: "setting", component: SettingComponent },
+  { path: "product", component: ProductComponent },
+  { path: "devis", component: RequestDevisComponent },
+  { path: "activities", component: MyActivitiesComponent },
+  { path: "gestionsurveillance", component: GestionSurveillanceComponent },
+  { path: "chat", component:ChatComponent },
+
+
+
+
+
   // { path: "rtl", component: RtlComponent }
 ];

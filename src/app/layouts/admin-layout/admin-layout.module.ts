@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import {Injectable, NgModule} from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
@@ -21,37 +21,53 @@ import { HomeComponent } from "../../home/home.component";
 import { SettingComponent } from "../../setting/setting.component";
 import { ProfileComponent } from "../../profile/profile.component";
 import { InssuranceComponent } from "../../inssurance/inssurance.component";
-
-
-
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import {TestComponent} from '../../test/test.component';
+import {ServiceSurveillance} from '../../service/surveillance/service-surveillance';
+import {ProductComponent} from '../../camera-surveillance/product/product.component';
+import {RequestDevisComponent} from '../../camera-surveillance/request-devis/request-devis.component';
+import {MyActivitiesComponent} from '../../camera-surveillance/my-activities/my-activities.component';
+import { GestionSurveillanceComponent } from '../../camera-surveillance/gestion-surveillance/gestion-surveillance.component';
+import { ChatComponent } from '../../camera-surveillance/chat/chat.component';
+
+
+
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    HttpClientModule,
-    NgbModule,
-  ],
-  declarations: [
-    DashboardComponent,
-    UserComponent,
-    TablesComponent,
-    IconsComponent,
-    TypographyComponent,
-    NotificationsComponent,
-    MapComponent,
-    VisitComponent,
-    CreditSimulationComponent,
-    CameraSurveillanceComponent,
-    ContratComponent,
-    HomeComponent,
-    SettingComponent,
-    ProfileComponent,
-    InssuranceComponent
-    // RtlComponent
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        HttpClientModule,
+        NgbModule,
+    ],
+    declarations: [
+        DashboardComponent,
+        UserComponent,
+        TablesComponent,
+        IconsComponent,
+        TypographyComponent,
+        NotificationsComponent,
+        MapComponent,
+        VisitComponent,
+        CreditSimulationComponent,
+        CameraSurveillanceComponent,
+        ContratComponent,
+        HomeComponent,
+        SettingComponent,
+        ProfileComponent,
+        InssuranceComponent,
+        ServiceSurveillance,
+        ProductComponent,
+        RequestDevisComponent,
+        GestionSurveillanceComponent,
+        MyActivitiesComponent,
+        ChatComponent// RtlComponent
+    ],
+
+    exports: [
+        TablesComponent
+    ]
 })
+
 export class AdminLayoutModule {}

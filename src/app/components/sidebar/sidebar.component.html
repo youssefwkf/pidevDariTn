@@ -1,10 +1,10 @@
 <div class="logo">
-  <a href="https://www.creative-tim.com?ref=bda-sidebar-logo" class="simple-text logo-mini">
+  <a class="simple-text logo-mini">
     <div class="logo-img">
       <img src="./assets/img/angular2-logo-white.png" />
     </div>
   </a>
-  <a href="https://www.creative-tim.com?ref=bda-sidebar-logo" class="simple-text logo-normal">
+  <a  class="simple-text logo-normal">
     Dari Tn
   </a>
 </div>
@@ -21,4 +21,28 @@
       </a>
     </li>
   </ul>
+
+  <ul class="nav" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+    <li routerLinkActive="active" class="nav-item" >
+      <a>
+        <i class="tim-icons  icon-camera-18"></i>
+        <p> Camera surveillance</p>
+      </a>
+    </li>
+    <li class="collapse" id="collapseExample">
+      <ul class="nav">
+        <li
+          routerLinkActive="active"
+          *ngFor="let menuItem of mymenuItems"
+          class="{{ menuItem.class }} nav-item"
+        >
+          <a [routerLink]="[menuItem.path]">
+            <i class="tim-icons  {{ menuItem.icon }}"></i>
+            <p>{{ menuItem.title }}</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>
+

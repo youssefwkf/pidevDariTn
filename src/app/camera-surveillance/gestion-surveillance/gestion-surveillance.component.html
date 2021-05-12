@@ -1,0 +1,206 @@
+<div class=" content">
+  <div class="row">
+    <div class="col-12">
+  <!--add product-->
+<div class="row">
+          <div class=" col-md-6">
+            <div class=" card">
+              <div class=" card-header"><h5 class=" title">Add Product</h5></div>
+              <div class=" card-body">
+                <form >
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>product name</label>
+                        <input class="form-control" id="productname" placeholder="product name" type="text" name="productname" [(ngModel)]="s.productName">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>price</label>
+                        <input class="form-control" id="price" placeholder="price" [(ngModel)]="s.price" type="text" name="price">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>capteur</label>
+                        <input class="form-control" id="capteur" placeholder="capteur" [(ngModel)]="s.capteur" type="text" name="capteur">
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>portee Infrarouge</label>
+                        <input class="form-control" id="porteeInfrarouge" placeholder="porteeInfrarouge" [(ngModel)]="s.porteeInfrarouge" type="number" name="porteeInfrarouge">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>resolution</label>
+                        <input class="form-control" id="resolution" placeholder="resolution" [(ngModel)]="s.resolution" type="number" name="resolution">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>indice Protection</label>
+                        <input  class="form-control" id="indiceProtection" placeholder="indiceProtection" [(ngModel)]="s.indiceProtection" type="number" name="indiceProtection">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>category</label>
+                        <select id="category" class="form-control" [(ngModel)]="s.categorySurveillance" type="text" name="category">
+                          <option>CAMERA_SANS_FIL</option>
+                          <option>CAMERA_SURVEILLANCE_HD</option>
+                          <option>CAMERA_IP</option>
+                          <option>FISHEYE_360</option>
+                          <option>CAMERA_MOTORISEE_PTZ</option>
+                          <option>ACCESSORY</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-7">
+                      <div class="form-group">
+                        <label>file</label>
+                        <div class="form-group">
+                          <label for="exampleFormControlFile1">Example file input</label>
+                          <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChanged($event)"><br>
+                          <img [src]="URL1" height="200" >
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="clearfix"></div>
+                </form>
+              </div>
+              <div class=" card-footer">
+                <button class=" btn btn-fill btn-success" type="submit" (click)="save()">Save</button>
+              </div>
+            </div>
+          </div>
+
+           <!--Supprimer Modifier-->
+  <div class=" col-md-6">
+    <div class=" card">
+      <div class=" card-header">
+      <div class=" card-body">
+        <form>
+
+         <div class="row ">
+           <table class="col-md-6">
+             <thead class="form-group" >
+             <tr>
+               <th><input class="form-control" placeholder="codeproduct" type="text" name="codeproduct" [(ngModel)]="s1.codeSurveillance"></th>
+               <th><button type="button" class="btn btn-danger btn-sm" (click)="getSurveillanceByCode(s1.codeSurveillance)">search</button></th>
+               <th><button type="button" class="btn btn-danger btn-sm" (click)="delete(s1.codeSurveillance)"><i class="fa fa-trash"></i></button></th>
+             </tr>
+             </thead>
+           </table>
+         </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>product name</label>
+                <input class="form-control" placeholder="product name" type="text" name="productname" [(ngModel)]="s1.productName">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>price</label>
+                <input class="form-control" placeholder="price" type="text" name="price" [(ngModel)]="s1.price">
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>capteur</label>
+                <input class="form-control" placeholder="capteur" type="text" name="capteur" [(ngModel)]="s1.capteur">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>portee Infrarouge</label>
+                <input class="form-control" placeholder="porteeInfrarouge" type="number" name="porteeInfrarouge" [(ngModel)]="s1.porteeInfrarouge">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>resolution</label>
+                <input class="form-control" placeholder="resolution" type="number" name="resolution" [(ngModel)]="s1.resolution">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>indice Protection</label>
+                <input  class="form-control" placeholder="indiceProtection" type="number" name="indiceProtection" [(ngModel)]="s1.indiceProtection">
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+      <div class=" card-footer">
+        <button class=" btn btn-fill btn-danger" type="submit" (click)="modify(s1)">Modify</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+            <!--table-->
+            <div>
+              <table class="table table-bordered">
+                <thead class="thead-light" >
+                <tr>
+                  <th *ngFor="let cell of table">{{ cell }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let row of listSurveillanceAgent">
+                  <td><img [src]="row.photo" width="300px"></td>
+                  <td>{{row.productName}}</td>
+                  <td>{{row.categorySurveillance}}</td>
+                  <td>{{row.codeSurveillance}}</td>
+                  <td>{{row.price}}</td>
+                  <td>{{row.capteur}}</td>
+                  <td>{{row.indiceProtection}}</td>
+                  <td>{{row.porteeInfrarouge}}</td>
+                  <td>{{row.resolution}}</td>
+                  <td>{{row.jaime}}</td>
+                  <td>{{row.jaimeplus}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+</div>
+
+
+
+
+
+
+
+
