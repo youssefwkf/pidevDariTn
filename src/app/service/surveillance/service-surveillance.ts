@@ -6,7 +6,7 @@ import {SurveillanceNotice} from '../../model/SurveillanceNotice';
 import { SurveillanceOfficer } from 'src/app/model/SurveillanceOfficer';
 import {LigneCommande} from '../../model/LigneCommande';
 import {SurveillanceCommand} from '../../model/SurveillanceCommand';
-
+import {MyMessage} from '../../model/MyMessage';
 
 @Directive({
   selector: '[appServiceSurveillance]'
@@ -20,7 +20,7 @@ export class ServiceSurveillance {
   }
   url = 'http://localhost:8089/dari/servlet';
   idas=5;
-  idc=4;
+  idc=1;
   listshopping: LigneCommande[]=[];
   nbelignecommande: number=0;
 
@@ -132,6 +132,14 @@ export class ServiceSurveillance {
   demandeDevis(lc :LigneCommande []){
     return this.http.post(this.url+'/AddDevis/'+this.idc,lc);
   }
+  /*************************************** Message ************************************************/
+  /*postMessage(message:MyMessage):Observable<MyMessage>{
+    return this.http.post<MyMessage>(this.url+'/AddMessage',message)
+  }
+
+  getMessages(from: string , to: string):Observable<MyMessage[]>{
+    return this.http.get<MyMessage[]>(this.url+'/getMessages/'+from+'/'+to);
+  }*/
 
 
 }

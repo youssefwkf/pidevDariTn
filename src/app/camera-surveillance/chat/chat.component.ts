@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as socketIo from 'socket.io-client';
 import {MyMessage} from '../../model/MyMessage';
-const SERVER_URL = 'http://localhost:8088';
+import {ServiceSurveillance} from '../../service/surveillance/service-surveillance';
+const SERVER_URL = 'http://localhost:8888';
 
 
 @Component({
@@ -18,11 +19,11 @@ export class ChatComponent implements OnInit {
   messages: MyMessage[]=[];
   sender: string;
   receiver: string;
+  boolnotif:boolean=false;
 
-  constructor() { }
+  constructor(private ss: ServiceSurveillance) { }
 
   ngOnInit(): void {
-
   }
 
   entername() {
@@ -30,26 +31,33 @@ export class ChatComponent implements OnInit {
     this.socket.emit('user_connected', this.mymessage.from);
     this.socket.on('user_connected', (data: string[]) => this.listusersconnected = data);
     this.socket.on('new',(so : any , msg: MyMessage)=>{
-      console.log(so);
+      msg.boolto=false;
       this.messages.push(msg);
     });
     this.sender=this.mymessage.from;
+
   }
 
   userSelected(cell) {
     this.mymessage.to = cell;
     this.socket.emit('selectedto',cell);
-    console.log(cell);
-    this.receiver=cell;
+    this.receiver=this.mymessage.to;
+    /*this.ss.getMessages(this.mymessage.from,this.mymessage.to).subscribe(next=>
+      console.log(next)
+    );*/
   }
 
   sendMessage() {
     this.socket.emit('send_message', this.mymessage);
-    this.messages.push(this.mymessage);
+    this.mymessage.boolform=true;
+   this.messages.push(this.mymessage);
+    //this.ss.postMessage(this.mymessage).subscribe();
+   // this.socket.on("getallmessage" , (messages : MyMessage[])=> console.log(messages));
     let mymessage1 : MyMessage=new MyMessage();
     this.mymessage=mymessage1;
     this.mymessage.to=this.receiver;
     this.mymessage.from=this.sender;
+    this.boolnotif=true;
   }
 
 }

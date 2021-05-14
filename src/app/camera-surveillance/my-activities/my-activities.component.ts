@@ -12,6 +12,9 @@ export class MyActivitiesComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  etat(e){
+
+  }
 
 
 }

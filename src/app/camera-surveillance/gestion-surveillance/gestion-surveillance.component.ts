@@ -12,11 +12,15 @@ import {ServiceSurveillance} from '../../service/surveillance/service-surveillan
 export class GestionSurveillanceComponent implements OnInit {
   selectedFile: File;
   selectedFile1: File;
+  selectedFile2: File;
   URL1: any;
   s: Surveillance = new Surveillance();
+  s1: Surveillance = new Surveillance();
+  s2: Surveillance = new Surveillance();
+  s3: Surveillance = new Surveillance();
   table: string[];
   listSurveillanceAgent: Surveillance[];
-  s1: Surveillance = new Surveillance();
+
 
   constructor(private ss: ServiceSurveillance, private notif : ToastrService) { }
 
@@ -42,13 +46,14 @@ export class GestionSurveillanceComponent implements OnInit {
   }
 
   save() {
-    this.ss.addSurveillance(this.s, this.selectedFile1).subscribe();
+    this.ss.addSurveillance(this.s, this.selectedFile1).subscribe(()=>
+      this.ss.surveillanceAgent().subscribe(rest => {this.listSurveillanceAgent = rest , this.s=this.s2})
+  );
     this.notif.success('ad was added successfully','success',{
       timeOut : 2000,
       progressBar : true,
       positionClass: 'toast-top-center',
       progressAnimation : 'increasing'
-
     });
   }
 
@@ -57,9 +62,9 @@ export class GestionSurveillanceComponent implements OnInit {
   }
 
   delete(code){
-    this.ss.searchCode(code).subscribe(data=>{this.s1=data;
-      this.ss.deleteSurveillance(this.s1.idSurveillance).subscribe(()=>
-        this.ss.surveillanceAgent().subscribe(rest =>{this.listSurveillanceAgent = rest,this.s1.codeSurveillance=null}));
+    this.ss.searchCode(code).subscribe(data=>{this.s3=data;
+      this.ss.deleteSurveillance(this.s3.idSurveillance).subscribe(()=>
+        this.ss.surveillanceAgent().subscribe(rest =>{this.listSurveillanceAgent = rest}));
     });
   }
   modify(s1){

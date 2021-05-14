@@ -10,31 +10,31 @@
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg" (click)="allprodut()">all products</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="allprodut()">all products</button>
           </div>
         </div>
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg" (click)="newproduct()">new product</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="newproduct()">new product</button>
           </div>
         </div>
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg" (click)="pricedes()">descending price</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="pricedes()">descending price</button>
           </div>
         </div>
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg" (click)="priceas()">ascending price</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="priceas()">ascending price</button>
           </div>
         </div>
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg" (click)="bylike()">most liked</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="bylike()">most liked</button>
           </div>
         </div>
 
@@ -52,7 +52,7 @@
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg" (click)="searchbyprice()">search</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="searchbyprice()">search</button>
           </div>
         </div>
 
@@ -63,7 +63,7 @@
             <div class="form-group">
               <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  choose category
+                   category
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"  >
                   <a class="dropdown-item" *ngFor="let cat of listcategory; let ic = index" (click)="searchbycategory(ic)">{{cat}}</a>
@@ -75,7 +75,7 @@
               <div class="form-group">
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    choose provider
+                     provider
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"  >
                     <a class="dropdown-item" *ngFor="let agent of listSurveillanceOfficer;let io = index" (click)="searchbyprovider(io)">{{agent.userName}}</a>
@@ -103,9 +103,9 @@
                   <tr>
                     <th><button type="button" class="btn btn-light btn-sm" (click)="like(cell.idSurveillance, i)" [disabled]="cell.test1"><li class="fa fa-thumbs-up"></li></button> </th><!---->
                     <th><button type="button" class="btn btn-light btn-sm" (click)="deslike(cell.idSurveillance, i)" [disabled]="cell.test2"><li class="fa fa-thumbs-down"></li></button> </th><!---->
-                    <th><button type="button" class="btn btn-info" style="padding: 15px 30px;" (click)="open(content)"><li class=" fa fa-info"></li>details</button> </th>
-                    <th><button type="button" class="btn btn-warning" style="padding: 15px 30px;" (click)="openAvis(content1 , cell.idSurveillance)">avis</button> &nbsp;</th>
-                    <th><button type="button" class="btn btn-success" style="padding: 15px 30px;" (click)="choose(cell.idSurveillance)">choose</button> &nbsp;</th>
+                    <th><button type="button" class="btn btn-danger" style="padding: 15px 30px;" (click)="open(content)">details</button> </th>
+                    <th><button type="button" class="btn btn-danger" style="padding: 15px 30px;" (click)="openAvis(content1 , cell.idSurveillance)">avis</button> &nbsp;</th>
+                    <th><button type="button" class="btn btn-danger" style="padding: 15px 30px;" (click)="choose(cell.idSurveillance)">choose</button> &nbsp;</th>
 
                   </tr>
                   </thead>

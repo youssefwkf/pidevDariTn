@@ -20,19 +20,33 @@ export class RequestDevisComponent implements OnInit {
 
   ngOnInit(): void {
     this.listshopping = this.ss.getlistlignecommande();
+    this.listshopping.forEach((ligne,index)=>{
+      this.total=this.total+ligne.lignePrice;
+    });
   }
 
   refresh(idLigneCommand, quantity, i) {
     this.ss.updatelignecommand(idLigneCommand, quantity).subscribe(next => {
       this.listshopping[i] = next;
+      this.total=0;
+      this.listshopping.forEach((ligne,index)=>{
+        this.total=this.total+ligne.lignePrice;
+      });
     });
   }
 
   delete(idlc, i) {
-    this.ss.deleteLignecommande(idlc).subscribe();
-    this.listshopping.forEach((item,idex)=>{
-      if(idex === i) this.listshopping.splice(idex,1);
+    this.ss.deleteLignecommande(idlc).subscribe(()=>{
+      this.listshopping.forEach((item,idex)=>{
+        if(idex === i) this.listshopping.splice(idex,1);
+      }),
+        this.total=0,
+      this.listshopping.forEach((ligne,index)=>{
+        this.total=this.total+ligne.lignePrice;
+      })
+
     });
+
     this.ss.postnbelignecommande(this.ss.getnbelignecommande()-1);
   }
 
