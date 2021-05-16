@@ -1,5 +1,5 @@
 import {Directive, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Surveillance} from '../../model/Surveillance';
 import {Observable} from 'rxjs';
 import {SurveillanceNotice} from '../../model/SurveillanceNotice';
@@ -7,6 +7,7 @@ import { SurveillanceOfficer } from 'src/app/model/SurveillanceOfficer';
 import {LigneCommande} from '../../model/LigneCommande';
 import {SurveillanceCommand} from '../../model/SurveillanceCommand';
 import {MyMessage} from '../../model/MyMessage';
+import {extractHostBindings} from '@angular/compiler-cli/src/ngtsc/annotations/src/directive';
 
 @Directive({
   selector: '[appServiceSurveillance]'
@@ -20,7 +21,7 @@ export class ServiceSurveillance {
   }
   url = 'http://localhost:8089/dari/servlet';
   idas=5;
-  idc=1;
+  idc=6;
   listshopping: LigneCommande[]=[];
   nbelignecommande: number=0;
 
@@ -111,7 +112,11 @@ export class ServiceSurveillance {
     return this.http.delete(this.url+'/removeLigneCommand/'+idlc);
   }
 
-  /************************************* Commande *******************************************/
+  detailsCommand(idCommand):Observable<LigneCommande[]>{
+    return this.http.get<LigneCommande[]>(this.url+'/detailsCommand/'+idCommand);
+  }
+
+  /************************************* Devis client *******************************************/
 
   postlistlignecommande(list:LigneCommande[]){
     return this.listshopping=list;
@@ -132,14 +137,88 @@ export class ServiceSurveillance {
   demandeDevis(lc :LigneCommande []){
     return this.http.post(this.url+'/AddDevis/'+this.idc,lc);
   }
+
+  passcommandClient(idCommand : number){
+    return this.http.put(this.url+'/requestPasseCommand/'+idCommand,null);
+  }
+
+  annulerCommandfunction(idCommand: number){
+    return this.http.put(this.url+'/annulerCommand/'+idCommand,null);
+  }
+
+  /*******************************Display Devis client****************************************/
+  displayRequestDevis():Observable<SurveillanceCommand[]>{
+    return this.http.get<SurveillanceCommand []>(this.url+'/afficherRequestDevisClient/'+this.idc);
+  }
+  displayResponseDevis():Observable<SurveillanceCommand[]>{
+    return this.http.get<SurveillanceCommand[]>(this.url+'/afficherResponseDevisClient/'+this.idc);
+  }
+  displayRequestPassCommand():Observable<SurveillanceCommand[]>{
+    return this.http.get<SurveillanceCommand[]>(this.url+'/afficherRequestPassCommandClient/'+this.idc);
+  }
+  displayResponsePasseCommand():Observable<SurveillanceCommand[]>{
+    return this.http.get<SurveillanceCommand[]>(this.url+'/afficherResponsePassCommandClient/'+this.idc);
+  }
+
+  displayannulerClient():Observable<SurveillanceCommand[]>{
+    return this.http.get<SurveillanceCommand[]>(this.url+'/afficherAnnulerPassCommandClient/'+this.idc);
+  }
+  displayokClient():Observable<SurveillanceCommand[]>{
+    return this.http.get<SurveillanceCommand[]>(this.url+'/afficherOKCommandClient/'+this.idc);
+  }
+
+  /*************************************** Display Command Agent ****************************************************/
+
+  requestDevisAgent():Observable<SurveillanceCommand[]>{
+  return  this.http.get<SurveillanceCommand[]>(this.url+'/afficherRequestDevisAgent/'+this.idas);
+  }
+  responseDevis(bonus1: string, description1: string, idCommand: number):Observable<SurveillanceCommand> {
+    const params = new HttpParams({
+      fromObject:{
+        description: description1,
+        bonus: bonus1,
+      }
+    });
+    return this.http.put<SurveillanceCommand>(this.url+'/ReponseDevis/'+idCommand,params);
+  }
+  responsedevisagent():Observable<SurveillanceCommand[]>{
+    return  this.http.get<SurveillanceCommand[]>(this.url+'/afficherReponseDevisAgent/'+this.idas);
+  }
+  requestpasscommand():Observable<SurveillanceCommand[]>{
+    return  this.http.get<SurveillanceCommand[]>(this.url+'/afficherRequestPassCommandAgent/'+this.idas);
+  }
+  resppnsepasscommand(description1 : string , idCommand: number):Observable<SurveillanceCommand>{
+    const params = new HttpParams({
+      fromObject:{
+        description: description1,
+      }
+    });
+    return this.http.put<SurveillanceCommand>(this.url+'/responsePasseCommand/'+idCommand,params);
+  }
+
+  responsepasscommand():Observable<SurveillanceCommand[]>{
+    return  this.http.get<SurveillanceCommand[]>(this.url+'/afficherResponsePassCommandAgent/'+this.idas);
+  }
+
+  commandAnnulerAgent():Observable<SurveillanceCommand[]>{
+    return  this.http.get<SurveillanceCommand[]>(this.url+'/afficherAnnulerPassCommandAgent/'+this.idas);
+  }
+  commandokAgent():Observable<SurveillanceCommand[]>{
+    return  this.http.get<SurveillanceCommand[]>(this.url+'/afficheeOkCommandAgent/'+this.idas);
+  }
+  confirmerCommand(idCommand: number):Observable<SurveillanceCommand>{
+
+    return this.http.put<SurveillanceCommand>(this.url+'/confirmeCommand/'+idCommand,null);
+  }
+
   /*************************************** Message ************************************************/
-  /*postMessage(message:MyMessage):Observable<MyMessage>{
+  postMessage(message:MyMessage):Observable<MyMessage>{
     return this.http.post<MyMessage>(this.url+'/AddMessage',message)
   }
 
   getMessages(from: string , to: string):Observable<MyMessage[]>{
     return this.http.get<MyMessage[]>(this.url+'/getMessages/'+from+'/'+to);
-  }*/
+  }
 
 
 }

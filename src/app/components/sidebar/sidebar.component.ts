@@ -67,7 +67,7 @@ export const MYROUTES: RouteInfo[] =[
   },
   {
     path: "/gestionsurveillance",
-    title: "gestionsurveillance",
+    title: "gestion Surveillance",
     rtlTitle: "ملف تعريفي للمستخدم",
     icon: "icon-notes",
     class: ""
@@ -75,6 +75,13 @@ export const MYROUTES: RouteInfo[] =[
   {
     path: "/chat",
     title: "chat",
+    rtlTitle: "ملف تعريفي للمستخدم",
+    icon: "icon-notes",
+    class: ""
+  },
+  {
+    path: "/activitiesAgent",
+    title: "activities Agent",
     rtlTitle: "ملف تعريفي للمستخدم",
     icon: "icon-notes",
     class: ""

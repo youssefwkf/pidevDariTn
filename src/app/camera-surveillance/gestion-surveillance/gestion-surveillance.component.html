@@ -58,7 +58,7 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>category</label>
-                        <select id="category" class="form-control" [(ngModel)]="s.categorySurveillance" type="text" name="category">
+                        <select id="category" [(ngModel)]="s.categorySurveillance" type="text" name="category">
                           <option>CAMERA_SANS_FIL</option>
                           <option>CAMERA_SURVEILLANCE_HD</option>
                           <option>CAMERA_IP</option>
@@ -71,9 +71,9 @@
 
                     <div class="col-md-7">
                       <div class="form-group">
-                        <label>file</label>
-                        <div class="form-group">
-                          <label for="exampleFormControlFile1">Example file input</label>
+                        <label>photo</label>
+                        <div >
+                          <label for="exampleFormControlFile1">click here</label>
                           <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChanged($event)"><br>
                           <img [src]="URL1" height="200" >
                         </div>

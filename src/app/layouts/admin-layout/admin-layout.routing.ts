@@ -4,9 +4,9 @@ import { Routes } from "@angular/router";
 import { IconsComponent } from "../../pages/icons/icons.component";
 import { MapComponent } from "../../pages/map/map.component";
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";
-import { UserComponent } from "../../pages/user/user.component";*/
+import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
-import { TypographyComponent } from "../../pages/typography/typography.component";
+import { TypographyComponent } from "../../pages/typography/typography.component";*/
 import {HomeComponent} from '../../home/home.component';
 import {VisitComponent} from '../../visit/visit.component';
 import {CreditSimulationComponent} from '../../credit-simulation/credit-simulation.component';
@@ -20,6 +20,7 @@ import {RequestDevisComponent} from '../../camera-surveillance/request-devis/req
 import {MyActivitiesComponent} from '../../camera-surveillance/my-activities/my-activities.component';
 import {GestionSurveillanceComponent} from '../../camera-surveillance/gestion-surveillance/gestion-surveillance.component';
 import {ChatComponent} from '../../camera-surveillance/chat/chat.component';
+import {ActiviesAgentComponent} from '../../camera-surveillance/activies-agent/activies-agent.component';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -36,10 +37,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: "activities", component: MyActivitiesComponent },
   { path: "gestionsurveillance", component: GestionSurveillanceComponent },
   { path: "chat", component:ChatComponent },
-
-
-
-
-
+  { path: "activitiesAgent", component: ActiviesAgentComponent },
   // { path: "rtl", component: RtlComponent }
 ];

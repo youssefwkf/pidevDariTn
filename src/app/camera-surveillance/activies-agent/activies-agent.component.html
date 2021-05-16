@@ -12,13 +12,13 @@
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-lg" (click)="afficheRequestPassCommand()">REQUEST PASS COMMAND</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="displayresquespasscommand()">REQUEST PASS COMMAND</button>
           </div>
         </div>
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-lg" (click)="okcommand()">COMMAND OK</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="displayok()">COMMAND OK</button>
           </div>
         </div>
 
@@ -29,25 +29,25 @@
         </div>
 
       </div>
-<hr>
+      <hr>
 
       <div class="row">
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-lg" (click)="responsedevis()">RESPONSE DEVIS</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="displayresponsedevis()">RESPONSE DEVIS</button>
           </div>
         </div>
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-lg" (click)="afficherResponsePassCommand()">RESPONSE PASS COMMAND</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)=" displayresponsepassCommand()">RESPONSE PASS COMMAND</button>
           </div>
         </div>
 
         <div class="col-md-auto">
           <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-lg" (click)="afficherannulerCommand()">COMMAND CANCELED</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)="displayAnnuler()">COMMAND CANCELED</button>
           </div>
         </div>
 
@@ -62,28 +62,28 @@
 
       <hr>
 
-<!--request devis-->
+      <!--request devis-->
       <div *ngIf="state==0">
-      <table class="table table-hover table-dark">
-      <thead>
-      <tr>
-        <th>code commande</th>
-        <th>provider</th>
-        <th>price devis</th>
-        <th>date request</th>
-        <th>details</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let devis of listrequestdevis">
-        <td >{{devis.codeCommande}}</td>
-        <td>{{devis.fournisseurCommand}}</td>
-        <td>{{devis.priceCommand}}</td>
-        <td>{{devis.dateCammand}}</td>
-       <td> <button class="btn btn-danger" (click)="openDetails(content , devis.idCommand)">details</button></td>
-      </tr>
-      </tbody>
-      </table>
+        <table class="table table-hover table-dark">
+          <thead>
+          <tr>
+            <th>code commande</th>
+            <th>price devis</th>
+            <th>date request</th>
+            <th>details</th
+            ><th>response</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let devis of listrequestdevis">
+            <td >{{devis.codeCommande}}</td>
+            <td >{{devis.priceCommand}}</td>
+            <td >{{devis.dateCammand}}</td>
+            <td><button class="btn btn-danger" (click)="openDetails(content , devis.idCommand)">details</button></td>
+            <td><button class="btn btn-danger" (click)="openResponse(content1 , devis.idCommand)">open</button></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
 
       <!--details command-->
@@ -116,7 +116,27 @@
 
         </div>
       </ng-template>
-      <!---->
+
+      <!--Response Devis-->
+      <ng-template #content1 let-modal class="modal-dialog">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title1">Response</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <textarea name="notice" id="description" placeholder="Write something.." style="width: 40rem; height: 10rem;" [(ngModel)]="description"></textarea>
+
+              <button type="button" class="btn btn-danger" style="float: right;" (click)="responsedevis()">response</button>
+          </div>
+          <div class="form-group">
+              <input name="bonus" id="bonus" placeholder="bonus"[(ngModel)]="bonnus" style="border: 2px solid black;" >
+          </div>
+
+        </div>
+      </ng-template>
 
       <!--response devis-->
       <div *ngIf="state==1">
@@ -131,11 +151,10 @@
             <th>description</th>
             <th>date response</th>
             <th>details</th>
-            <th>action</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let devis of listrsponsedevis">
+          <tr *ngFor="let devis of listresponsetdevis">
             <td >{{devis.codeCommande}}</td>
             <td>{{devis.fournisseurCommand}}</td>
             <td>{{devis.priceCommand}}</td>
@@ -144,13 +163,12 @@
             <td>{{devis.description}}</td>
             <td>{{devis.dateCammand}}</td>
             <td> <button class="btn btn-danger" (click)="openDetails(content , devis.idCommand)">details</button>
-            </td><td> <button class="btn btn-danger" (click)="passcommand(devis.idCommand)">pass command</button></td>
           </tr>
           </tbody>
         </table>
       </div>
 
-      <!--request pass command-->
+          <!--request pass command-->
       <div *ngIf="state==2">
         <table class="table table-hover table-dark">
           <thead>
@@ -167,7 +185,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let devis of listrequestpassCommand">
+          <tr *ngFor="let devis of listrequestpasscommand">
             <td >{{devis.codeCommande}}</td>
             <td>{{devis.fournisseurCommand}}</td>
             <td>{{devis.priceCommand}}</td>
@@ -176,11 +194,12 @@
             <td>{{devis.description}}</td>
             <td>{{devis.dateCammand}}</td>
             <td> <button class="btn btn-danger" (click)="openDetails(content , devis.idCommand)">details</button>
-            </td><td> <button class="btn btn-danger" (click)="annulerCommand(devis.idCommand)">annuler command</button></td>
+            </td><td> <button class="btn btn-danger" (click)="openResponse(content2 , devis.idCommand)">open</button></td>
           </tr>
           </tbody>
         </table>
       </div>
+<!---->
 
       <!--response pass command-->
       <div *ngIf="state==3">
@@ -195,11 +214,11 @@
             <th>description</th>
             <th>date response</th>
             <th>details</th>
-            <th>action</th>
+            <th>confirmer</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let devis of listresponepassCommand">
+          <tr *ngFor="let devis of listresponsepasscommand">
             <td >{{devis.codeCommande}}</td>
             <td>{{devis.fournisseurCommand}}</td>
             <td>{{devis.priceCommand}}</td>
@@ -208,13 +227,12 @@
             <td>{{devis.description}}</td>
             <td>{{devis.dateCammand}}</td>
             <td> <button class="btn btn-danger" (click)="openDetails(content , devis.idCommand)">details</button>
-            </td><td> <button class="btn btn-danger" (click)="annulerCommand(devis.idCommand)">annuler command</button></td>
+            <td> <button class="btn btn-danger" (click)="confirmer(devis.idCommand)">confirmer</button></td>
           </tr>
           </tbody>
         </table>
       </div>
-
-      <!--Command annulé-->
+      <!--annuler pass command-->
       <div *ngIf="state==4">
         <table class="table table-hover table-dark">
           <thead>
@@ -230,7 +248,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let devis of listannulerpassCommand">
+          <tr *ngFor="let devis of listannulercommand">
             <td >{{devis.codeCommande}}</td>
             <td>{{devis.fournisseurCommand}}</td>
             <td>{{devis.priceCommand}}</td>
@@ -244,8 +262,7 @@
         </table>
       </div>
 
-      <!--command confirmé-->
-
+      <!--ok command-->
       <div *ngIf="state==5">
         <table class="table table-hover table-dark">
           <thead>
@@ -258,11 +275,10 @@
             <th>description</th>
             <th>date response</th>
             <th>details</th>
-            <th>action</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let devis of listokCommand">
+          <tr *ngFor="let devis of listokcommand">
             <td >{{devis.codeCommande}}</td>
             <td>{{devis.fournisseurCommand}}</td>
             <td>{{devis.priceCommand}}</td>
@@ -271,12 +287,24 @@
             <td>{{devis.description}}</td>
             <td>{{devis.dateCammand}}</td>
             <td> <button class="btn btn-danger" (click)="openDetails(content , devis.idCommand)">details</button>
-            <td> <button class="btn btn-danger">demande avoirs</button>
           </tr>
           </tbody>
         </table>
       </div>
-
+      <ng-template #content2 let-modal class="modal-dialog">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title2">Response</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <textarea name="notice" id="description1" placeholder="Write something.." style="width: 40rem; height: 10rem;" [(ngModel)]="description"></textarea>
+            <button type="button" class="btn btn-danger" style="float: right;" (click)="responsecommand()">response</button>
+          </div>
+        </div>
+      </ng-template>
 
     </div>
   </div>

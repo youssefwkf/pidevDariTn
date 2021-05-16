@@ -3,7 +3,7 @@ import {StateCommand} from './StateCommand';
 export class SurveillanceCommand{
 
   idCommand: number;
-  dateCammand: string;
+  dateCammand: any;
   priceCommand: number;
   finalPriceCommand: number;
   discountprice: number;

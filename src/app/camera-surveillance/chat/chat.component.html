@@ -8,46 +8,8 @@
   <div class=" row">
     <div class=" col-12">
 
-      <p>chat works!</p>
-
-      <!--<div>
-        <form>
-          <input id="name" placeholder="Enter name" name="username" [(ngModel)]="mymessage.from">
-          <button (click)="entername()">enter name</button>
-        </form>
-      </div>
-
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>userconnected</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let cell of listusersconnected">
-               <th><button (click)="userSelected(cell)">{{cell}}</button></th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <br>
-
-
-      <div>
-        <form>
-          <input id="sendMessage" placeholder="sendMessage" name="sendMessage" [(ngModel)]="mymessage.content">
-          <button (click)="sendMessage()">sendMessage</button>
-        </form>
-      </div>
-
-      <div *ngFor="let msg of messages">
-          {{msg.from}}:{{msg.content}}
-      </div>-->
-
-
      <input type="text" id="userName" name="userName" [(ngModel)]="mymessage.from"> <button (click)="entername()">login</button>
+
       <div class="container">
 
         <div class="messaging">
@@ -62,42 +24,46 @@
               </div>
 
               <div class="inbox_chat" >
+                <div *ngFor="let user of listusersconnected">
 
-                <div class="chat_list" role="button" *ngFor="let user of listusersconnected" (click)="userSelected(user)" >
-                  <div class="chat_people" *ngIf="mymessage.from!= user">
+                <div class="chat_list" role="button"  *ngIf="sender!= user" (click)="userSelected(user)">
+
+                  <div class="chat_people" >
                     <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                     <div class="chat_ib">
                       <h5>{{user}}</h5>
                     </div>
                   </div>
                 </div>
+                </div>
               </div>
 
             </div>
             <div class="mesgs">
               <div class="msg_history">
+
                 <div   *ngFor="let msg of messages">
 
-                  <div *ngIf="msg.boolform===true && msg.to===receiver">
+                <div *ngIf="msg.boolform===true && msg.to===receiver">
                 <div class="incoming_msg" >
-                  <div class="received_msg">
-                    <div class="received_withd_msg">
-                      <p>{{msg.content}}</p>
-                      </div>
-                  </div>
+                <div class="received_msg">
+                <div class="received_withd_msg">
+                <p>{{msg.content}}</p>
                 </div>
-                  </div>
+                </div>
+                </div>
+                </div>
 
-                  <div *ngIf="msg.boolto===false && msg.from===receiver" >
+                <div *ngIf="msg.boolto===false && msg.from===receiver" >
                 <div class="outgoing_msg">
-                  <div class="sent_msg">
-                    <p>{{msg.content}}</p>
-                     </div>
+                <div class="sent_msg">
+                <p>{{msg.content}}</p>
                 </div>
-                  </div>
-
+                </div>
+                </div>
 
                 </div>
+
               </div>
             </div>
             <div class="type_msg">

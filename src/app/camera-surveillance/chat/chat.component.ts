@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
   mymessage: MyMessage = new MyMessage();
   myData: any;
   messages: MyMessage[]=[];
+  messagesBD: MyMessage[]=[];
   sender: string;
   receiver: string;
   boolnotif:boolean=false;
@@ -24,6 +25,9 @@ export class ChatComponent implements OnInit {
   constructor(private ss: ServiceSurveillance) { }
 
   ngOnInit(): void {
+    this.ss.getMessages(this.mymessage.from,this.mymessage.to).subscribe(next=>
+      console.log(next)
+    );
   }
 
   entername() {
@@ -42,17 +46,14 @@ export class ChatComponent implements OnInit {
     this.mymessage.to = cell;
     this.socket.emit('selectedto',cell);
     this.receiver=this.mymessage.to;
-    /*this.ss.getMessages(this.mymessage.from,this.mymessage.to).subscribe(next=>
-      console.log(next)
-    );*/
+   /* */
   }
 
   sendMessage() {
     this.socket.emit('send_message', this.mymessage);
     this.mymessage.boolform=true;
-   this.messages.push(this.mymessage);
-    //this.ss.postMessage(this.mymessage).subscribe();
-   // this.socket.on("getallmessage" , (messages : MyMessage[])=> console.log(messages));
+    this.messages.push(this.mymessage);
+    this.ss.postMessage(this.mymessage).subscribe();
     let mymessage1 : MyMessage=new MyMessage();
     this.mymessage=mymessage1;
     this.mymessage.to=this.receiver;

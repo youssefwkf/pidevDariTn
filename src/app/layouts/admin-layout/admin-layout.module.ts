@@ -22,15 +22,13 @@ import { SettingComponent } from "../../setting/setting.component";
 import { ProfileComponent } from "../../profile/profile.component";
 import { InssuranceComponent } from "../../inssurance/inssurance.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import {TestComponent} from '../../test/test.component';
 import {ServiceSurveillance} from '../../service/surveillance/service-surveillance';
 import {ProductComponent} from '../../camera-surveillance/product/product.component';
 import {RequestDevisComponent} from '../../camera-surveillance/request-devis/request-devis.component';
 import {MyActivitiesComponent} from '../../camera-surveillance/my-activities/my-activities.component';
 import { GestionSurveillanceComponent } from '../../camera-surveillance/gestion-surveillance/gestion-surveillance.component';
 import { ChatComponent } from '../../camera-surveillance/chat/chat.component';
-
-
+import { ActiviesAgentComponent } from '../../camera-surveillance/activies-agent/activies-agent.component';
 
 
 @NgModule({
@@ -62,7 +60,8 @@ import { ChatComponent } from '../../camera-surveillance/chat/chat.component';
         RequestDevisComponent,
         GestionSurveillanceComponent,
         MyActivitiesComponent,
-        ChatComponent// RtlComponent
+        ChatComponent,
+        ActiviesAgentComponent// RtlComponent
     ],
 
     exports: [
